@@ -1,14 +1,30 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace multithreading
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             SimpleThreadExample simpleThreadExample = new SimpleThreadExample();
-            simpleThreadExample.StartMultipleThread();
+
+            Task t1 = simpleThreadExample.DoSometh("t1");
+            Task t2 = simpleThreadExample.DoSometh("t2");
+            Task t3 = simpleThreadExample.DoSometh("t3");
+            Task t4 = simpleThreadExample.DoSometh("t4");
+
+            Task.Run(() => t1);
+            //Task.Run(() => t2);
+            Task.Run(() => t3);
+            Task.Run(() => t4);
+
+            Task.WaitAll(t1);
+
+            await t2;
+
+            return 1;
         }
     }
 }
@@ -77,6 +93,20 @@ public class SimpleThreadExample
 
 
         Console.WriteLine("All Threads Exited in {0} secods", (DateTime.Now - startTime).TotalSeconds);
+    }
+
+    public async Task DoSometh(string name)
+    {
+        Console.WriteLine($"entering task {name} {Task.CurrentId}" );
+        await Task.Delay(10000);
+        Console.WriteLine($"exiting do someth {name} {Task.CurrentId}");
+    }
+
+    public async void DoVoid(string name)
+    {
+        Console.WriteLine($"entering task {Task.CurrentId}");
+        await Task.Delay(10000);
+        Console.WriteLine($"exiting do someth {Task.CurrentId}");
     }
 }
 

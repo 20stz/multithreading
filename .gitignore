@@ -65,8 +65,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-Backend/KPMG.DE.Kosmos.Service.Backend/Web.config
-Backend/KPMG.Global.Cosmos.Services.Global/Web.config
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -545,17 +543,4 @@ desktop.ini
 
 
 # End of https://www.gitignore.io/api/node,csharp,angular,visualstudio,visualstudiocode
-
-#Custom rules
-Backend/KPMG.DE.Kosmos.Service.Backend/Properties/PublishProfiles/*
-Backend/KPMG.Global.Cosmos.Services.Global/Properties/PublishProfiles/*
-Backend/CosmosSecrets/*
-
-Backend_PY/Lookups/data/lookup_tables/new_attr.txt
-!Backend_PY/Lookups/debug
-Backend_PY/venv/
-/Backend/.sonarqube
-
-# Ignore code coverage folder
-.CodeCoverage
 
